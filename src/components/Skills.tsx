@@ -76,7 +76,7 @@ export default function Skills() {
         </p> */}
 
         <div className="max-w-6xl mx-auto">
-          {/* Languages (Potentiall change to amount of years used?)*/}
+          {/* Languages (Potentially change to amount of years used?)*/}
           <div className="mb-12">
             <h3 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200 flex items-center">
               <span className="bg-blue-500 w-3 h-3 rounded-full mr-3"></span>
