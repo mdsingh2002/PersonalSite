@@ -1,3 +1,82 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Keycap Styling */
+@layer components {
+  .keyboard-row {
+    @apply flex flex-wrap gap-4 justify-center;
+  }
+
+  .keycap {
+    @apply relative transform transition-all duration-200;
+    animation: rgb-glow 3s linear infinite;
+  }
+
+  .keycap:hover {
+    @apply scale-110 -translate-y-1;
+  }
+
+  .keycap-body {
+    @apply w-20 h-20 bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800
+           rounded-lg shadow-lg flex flex-col items-center justify-center gap-1
+           border-2 border-gray-700 dark:border-gray-600
+           relative overflow-hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 8px 15px rgba(0, 0, 0, 0.2),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.5),
+      inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  }
+
+  .keycap:hover .keycap-body {
+    @apply border-blue-400;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 12px 30px rgba(0, 0, 0, 0.3),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.5),
+      inset 0 2px 4px rgba(255, 255, 255, 0.2), 0 0 20px currentColor;
+  }
+
+  .keycap-icon {
+    @apply text-gray-300 dark:text-gray-200 transition-colors duration-200;
+  }
+
+  .keycap:hover .keycap-icon {
+    @apply text-white;
+  }
+
+  .keycap-label {
+    @apply text-[9px] font-bold text-gray-400 dark:text-gray-300 text-center leading-tight;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 2px;
+  }
+
+  .keycap:hover .keycap-label {
+    @apply text-gray-200 dark:text-white;
+  }
+}
+
+/* RGB Rolling Glow Animation */
+@keyframes rgb-glow {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.7));
+  }
+  16.66% {
+    filter: drop-shadow(0 0 10px rgba(255, 127, 0, 0.7));
+  }
+  33.33% {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.7));
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.7));
+  }
+  66.66% {
+    filter: drop-shadow(0 0 10px rgba(0, 127, 255, 0.7));
+  }
+  83.33% {
+    filter: drop-shadow(0 0 10px rgba(139, 0, 255, 0.7));
+  }
+  100% {
+    filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.7));
+  }
+}

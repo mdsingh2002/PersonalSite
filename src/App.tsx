@@ -1,6 +1,7 @@
 import Navigation from './components/Navigation'
 import About from './components/About'
 import Experience from './components/Experience'
+import Skills from './components/Skills'
 import GitHubProjects from './components/GitHubProjects'
 import ElectronicsProjects from './components/ElectronicsProjects'
 
@@ -10,6 +11,7 @@ function App() {
       <Navigation />
       <About />
       <Experience />
+      <Skills />
       <GitHubProjects />
       <ElectronicsProjects />
 
