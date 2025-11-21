@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import ProjectCard from './ProjectCard';
-import { fetchUserRepos, Repository } from '../services/github';
+import { fetchUserRepos, fetchSpecificRepo, Repository } from '../services/github';
 import { GITHUB_USERNAME } from '../config';
 
 export default function GitHubProjects() {
@@ -16,7 +16,15 @@ export default function GitHubProjects() {
         setLoading(true);
         setError(null);
         const reposData = await fetchUserRepos(GITHUB_USERNAME);
-        setRepos(reposData);
+
+        // Fetch a specific repo that I have worked on previously for CMPUT 301
+        try {
+          const contributedRepo = await fetchSpecificRepo('CMPUT301W24T21', 'ScanNPlan');
+          setRepos([contributedRepo, ...reposData]);
+        } catch (err) {
+          console.error('Error fetching contributed repo:', err);
+          setRepos(reposData);
+        }
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
       } finally {

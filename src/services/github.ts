@@ -61,3 +61,18 @@ export async function fetchUserProfile(username: string): Promise<UserProfile> {
     throw error;
   }
 }
+
+export async function fetchSpecificRepo(owner: string, repo: string): Promise<Repository> {
+  try {
+    const response = await fetch(`${GITHUB_API_URL}/repos/${owner}/${repo}`);
+
+    if (!response.ok) {
+      throw new Error(`GitHub API error: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching specific repo:', error);
+    throw error;
+  }
+}
