@@ -15,6 +15,7 @@ export default function Navigation() {
         "skills",
         "projects",
         "electronics",
+        "contact",
       ];
       const current = sections.find((section) => {
         const element = document.getElementById(section);
@@ -51,6 +52,7 @@ export default function Navigation() {
     { id: "skills", label: "Skills" },
     { id: "projects", label: "GitHub Projects" },
     { id: "electronics", label: "Electronics" },
+    { id: "contact", label: "Contact" },
   ];
 
   return (

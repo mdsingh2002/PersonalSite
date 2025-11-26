@@ -4,6 +4,7 @@ import Experience from './components/Experience'
 import Skills from './components/Skills'
 import GitHubProjects from './components/GitHubProjects'
 import ElectronicsProjects from './components/ElectronicsProjects'
+import Contact from './components/Contact'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Skills />
       <GitHubProjects />
       <ElectronicsProjects />
+      <Contact />
 
       {/* Footer */}
       <footer className="bg-gray-900 dark:bg-black text-white py-8">
