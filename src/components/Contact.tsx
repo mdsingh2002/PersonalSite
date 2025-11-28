@@ -64,24 +64,24 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="min-h-screen py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
+      className="min-h-screen py-24 px-6"
     >
-      <div className="container mx-auto px-4 max-w-4xl">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+      <div className="max-w-6xl mx-auto">
+        {/* Section Header - Apple style */}
+        <div className="text-center mb-16">
+          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">
             Get In Touch
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-lg">
-            Have a question or want to work together? I'd love to hear from you!
+          <p className="text-xl text-gray-600 dark:text-gray-400 font-light">
+            Have a question or want to work together? I'd love to hear from you
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {/* Contact Info */}
           <div className="md:col-span-1 space-y-6">
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
+            <div className="card-glass card-glass-hover p-8 animate-fade-up">
+              <h3 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">
                 Contact Information
               </h3>
 
@@ -90,35 +90,35 @@ export default function Contact() {
                   href={`https://github.com/${GITHUB_USERNAME}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-all duration-300 ease-apple group"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-2xl glass-heavy flex items-center justify-center group-hover:shadow-glass-hover transition-all duration-300">
                     <FiGithub className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-500">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">
                       GitHub
                     </p>
-                    <p className="font-medium">@{GITHUB_USERNAME}</p>
+                    <p className="font-semibold">@{GITHUB_USERNAME}</p>
                   </div>
                 </a>
 
-                <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400">
-                  <div className="w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+                <div className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
+                  <div className="w-12 h-12 rounded-2xl glass-heavy flex items-center justify-center">
                     <FiMail className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-500">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">
                       Email
                     </p>
-                    <p className="font-medium text-sm">Via form</p>
+                    <p className="font-semibold text-sm">Via form</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+            <div className="card-glass p-6 border-2 border-brand-200 dark:border-brand-800/30 animate-fade-up">
+              <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
                 I typically respond within 24-48 hours. Looking forward to
                 connecting with you!
               </p>
@@ -129,14 +129,14 @@ export default function Contact() {
           <div className="md:col-span-2">
             <form
               onSubmit={handleSubmit}
-              className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg"
+              className="card-glass p-8 animate-fade-up"
             >
               <div className="space-y-6">
                 {/* Name */}
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                    className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
                   >
                     Name
                   </label>
@@ -147,7 +147,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-all"
+                    className="w-full px-5 py-3 rounded-2xl glass-heavy text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all duration-300"
                     placeholder="Your name"
                   />
                 </div>
@@ -156,7 +156,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                    className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
                   >
                     Email
                   </label>
@@ -167,7 +167,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-all"
+                    className="w-full px-5 py-3 rounded-2xl glass-heavy text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all duration-300"
                     placeholder="your.email@example.com"
                   />
                 </div>
@@ -176,7 +176,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="subject"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                    className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
                   >
                     Subject
                   </label>
@@ -187,7 +187,7 @@ export default function Contact() {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-all"
+                    className="w-full px-5 py-3 rounded-2xl glass-heavy text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all duration-300"
                     placeholder="What's this about?"
                   />
                 </div>
@@ -196,7 +196,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                    className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
                   >
                     Message
                   </label>
@@ -207,7 +207,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-all resize-none"
+                    className="w-full px-5 py-3 rounded-2xl glass-heavy text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all duration-300 resize-none"
                     placeholder="Your message..."
                   />
                 </div>
@@ -216,7 +216,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl disabled:cursor-not-allowed"
+                  className="w-full btn-apple flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {status === "submitting" ? (
                     <>
@@ -233,19 +233,33 @@ export default function Contact() {
 
                 {/* Success Message */}
                 {status === "success" && (
-                  <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
-                    <p className="text-green-800 dark:text-green-400 text-sm font-medium">
-                      Message sent successfully! I'll get back to you soon.
-                    </p>
+                  <div className="card-glass p-6 border-2 border-green-200 dark:border-green-800/30 animate-fade-up">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                        <svg className="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <p className="text-green-800 dark:text-green-400 text-sm font-medium">
+                        Message sent successfully! I'll get back to you soon.
+                      </p>
+                    </div>
                   </div>
                 )}
 
                 {/* Error Message */}
                 {status === "error" && (
-                  <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
-                    <p className="text-red-800 dark:text-red-400 text-sm font-medium">
-                      {errorMessage}
-                    </p>
+                  <div className="card-glass p-6 border-2 border-red-200 dark:border-red-800/30 animate-fade-up">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
+                        <svg className="w-5 h-5 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </div>
+                      <p className="text-red-800 dark:text-red-400 text-sm font-medium">
+                        {errorMessage}
+                      </p>
+                    </div>
                   </div>
                 )}
               </div>
