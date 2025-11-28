@@ -31,7 +31,7 @@ import { VscCode, VscAzure } from "react-icons/vsc";
 
 export default function Skills() {
   const [hasAnimated, setHasAnimated] = useState(false);
-  const [view, setView] = useState<"keyboard" | "globe">("globe");
+  const [view, setView] = useState<"grid" | "globe">("globe");
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -116,52 +116,43 @@ export default function Skills() {
     <section
       ref={sectionRef}
       id="skills"
-      className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900"
+      className="min-h-screen py-24 px-6"
     >
-      <div className="container mx-auto px-4">
-        <h2
-          className={`text-4xl font-bold text-center mb-4 text-gray-900 dark:text-white transition-all duration-700 ${
-            hasAnimated
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 -translate-y-4"
-          }`}
-        >
-          Skills & Technologies
-        </h2>
-        <p
-          className={`text-center text-gray-600 dark:text-gray-400 mb-8 transition-all duration-700 delay-200 ${
-            hasAnimated
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 -translate-y-4"
-          }`}
-        >
-          {view === "keyboard"
-            ? "Hover over the keys to explore"
-            : "Drag to rotate • Hover & click icons to explore"}
-        </p>
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header - Apple style */}
+        <div className="text-center mb-16">
+          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight animate-fade-up">
+            Skills & Technologies
+          </h2>
+          <p className="text-xl text-gray-600 dark:text-gray-400 font-light animate-fade-up">
+            {view === "grid"
+              ? "Technologies I work with"
+              : "Interactive 3D visualization"}
+          </p>
+        </div>
 
-        {/* View Toggle */}
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 p-1">
+        {/* View Toggle - Glass pill */}
+        <div className="flex justify-center mb-12 animate-fade-up">
+          <div className="inline-flex rounded-full glass p-1.5 shadow-soft-md">
             <button
               onClick={() => setView("globe")}
-              className={`px-6 py-2 rounded-md font-medium transition-all duration-200 ${
+              className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 ease-apple ${
                 view === "globe"
-                  ? "bg-blue-600 text-white shadow-md"
-                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  ? "bg-brand-500 text-white shadow-soft-md"
+                  : "text-gray-700 dark:text-gray-300 hover:bg-white/40 dark:hover:bg-gray-800/40"
               }`}
             >
               3D Globe
             </button>
             <button
-              onClick={() => setView("keyboard")}
-              className={`px-6 py-2 rounded-md font-medium transition-all duration-200 ${
-                view === "keyboard"
-                  ? "bg-blue-600 text-white shadow-md"
-                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              onClick={() => setView("grid")}
+              className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 ease-apple ${
+                view === "grid"
+                  ? "bg-brand-500 text-white shadow-soft-md"
+                  : "text-gray-700 dark:text-gray-300 hover:bg-white/40 dark:hover:bg-gray-800/40"
               }`}
             >
-              Flat Format
+              Grid View
             </button>
           </div>
         </div>
@@ -173,44 +164,73 @@ export default function Skills() {
           </div>
         )}
 
-        {/* Keyboard View */}
-        {view === "keyboard" && (
-          <div className="max-w-5xl mx-auto perspective-container relative">
-            <div className="keyboard-container">
-              {keyboardRows.map((row, rowIndex) => (
-                <div
-                  key={rowIndex}
-                  className="keyboard-row"
-                  style={{
-                    paddingLeft: `${rowIndex * 10}px`, // Stagger each row slightly
-                  }}
-                >
-                  {row.map((skill, index) => {
-                    const globalIndex = rowIndex * 10 + index;
+        {/* Grid View - Glassmorphism cards by category */}
+        {view === "grid" && (
+          <div className="max-w-6xl mx-auto space-y-8">
+            {/* Languages */}
+            <div className="card-glass p-8 animate-fade-up">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                <span className="w-2 h-2 rounded-full bg-brand-500"></span>
+                Languages
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                {skills.languages.map((skill, index) => (
+                  <div
+                    key={skill.name}
+                    className="glass-heavy rounded-2xl p-4 flex flex-col items-center gap-3 hover:shadow-glass-hover transition-all duration-300 ease-apple cursor-pointer group"
+                    style={{ animationDelay: `${index * 0.05}s` }}
+                  >
+                    <skill.Icon className="w-8 h-8 text-gray-700 dark:text-gray-300 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-300" />
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300 text-center">
+                      {skill.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-                    return (
-                      <div
-                        key={skill.name}
-                        className={`keycap-wrapper ${
-                          hasAnimated ? "keycap-dropped" : "keycap-hidden"
-                        }`}
-                        style={{
-                          animationDelay: hasAnimated
-                            ? `${globalIndex * 0.08}s`
-                            : "0s",
-                        }}
-                      >
-                        <Keycap
-                          skill={skill.name}
-                          category={skill.category}
-                          Icon={skill.Icon}
-                          index={globalIndex}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              ))}
+            {/* Frameworks */}
+            <div className="card-glass p-8 animate-fade-up">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                <span className="w-2 h-2 rounded-full bg-brand-500"></span>
+                Frameworks & Libraries
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                {[...skills.frameworks, ...skills.libraries].map((skill, index) => (
+                  <div
+                    key={skill.name}
+                    className="glass-heavy rounded-2xl p-4 flex flex-col items-center gap-3 hover:shadow-glass-hover transition-all duration-300 ease-apple cursor-pointer group"
+                    style={{ animationDelay: `${index * 0.05}s` }}
+                  >
+                    <skill.Icon className="w-8 h-8 text-gray-700 dark:text-gray-300 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-300" />
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300 text-center">
+                      {skill.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Tools */}
+            <div className="card-glass p-8 animate-fade-up">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                <span className="w-2 h-2 rounded-full bg-brand-500"></span>
+                Developer Tools
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                {skills.tools.map((skill, index) => (
+                  <div
+                    key={skill.name}
+                    className="glass-heavy rounded-2xl p-4 flex flex-col items-center gap-3 hover:shadow-glass-hover transition-all duration-300 ease-apple cursor-pointer group"
+                    style={{ animationDelay: `${index * 0.05}s` }}
+                  >
+                    <skill.Icon className="w-8 h-8 text-gray-700 dark:text-gray-300 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-300" />
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300 text-center">
+                      {skill.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         )}
