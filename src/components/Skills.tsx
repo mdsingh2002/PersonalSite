@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Keycap from "./Keycap";
+import SkillsGlobe from "./SkillsGlobe";
 import {
   SiC,
   SiPython,
@@ -22,13 +23,15 @@ import {
   SiPandas,
   SiPlotly,
   SiTensorflow,
+  SiMongodb,
 } from "react-icons/si";
 import { TbBrandCSharp, TbBrandVscode } from "react-icons/tb";
-import { FaJava } from "react-icons/fa";
-import { VscCode } from "react-icons/vsc";
+import { FaJava, FaMicrosoft } from "react-icons/fa";
+import { VscCode, VscAzure } from "react-icons/vsc";
 
 export default function Skills() {
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [view, setView] = useState<"keyboard" | "globe">("globe");
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -81,6 +84,8 @@ export default function Skills() {
       { name: "IntelliJ", Icon: SiIntellijidea },
       { name: "Postman", Icon: SiPostman },
       { name: "Docker", Icon: SiDocker },
+      { name: "Azure", Icon: VscAzure },
+      { name: "MongoDB", Icon: SiMongodb },
     ],
     libraries: [
       { name: "Pandas", Icon: SiPandas },
@@ -107,9 +112,6 @@ export default function Skills() {
     allSkills.slice(25), // Bottom row - remaining keys
   ];
 
-  // Empty key positions (show MX Red switches)
-  const emptyKeyPositions = new Set([3, 7, 12, 16, 22]); // Random positions without keycaps
-
   return (
     <section
       ref={sectionRef}
@@ -127,34 +129,68 @@ export default function Skills() {
           Skills & Technologies
         </h2>
         <p
-          className={`text-center text-gray-600 dark:text-gray-400 mb-12 transition-all duration-700 delay-200 ${
+          className={`text-center text-gray-600 dark:text-gray-400 mb-8 transition-all duration-700 delay-200 ${
             hasAnimated
               ? "opacity-100 translate-y-0"
               : "opacity-0 -translate-y-4"
           }`}
         >
-          Hover over the keys to explore
+          {view === "keyboard"
+            ? "Hover over the keys to explore"
+            : "Drag to rotate • Hover & click icons to explore"}
         </p>
 
-        {/* 3D Keyboard Container */}
-        <div className="max-w-5xl mx-auto perspective-container relative">
-          <div className="keyboard-container">
-            {keyboardRows.map((row, rowIndex) => (
-              <div
-                key={rowIndex}
-                className="keyboard-row"
-                style={{
-                  paddingLeft: `${rowIndex * 10}px`, // Stagger each row slightly
-                }}
-              >
-                {row.map((skill, index) => {
-                  const globalIndex = rowIndex * 10 + index;
-                  const isEmpty = emptyKeyPositions.has(globalIndex);
+        {/* View Toggle */}
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 p-1">
+            <button
+              onClick={() => setView("globe")}
+              className={`px-6 py-2 rounded-md font-medium transition-all duration-200 ${
+                view === "globe"
+                  ? "bg-blue-600 text-white shadow-md"
+                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              }`}
+            >
+              3D Globe
+            </button>
+            <button
+              onClick={() => setView("keyboard")}
+              className={`px-6 py-2 rounded-md font-medium transition-all duration-200 ${
+                view === "keyboard"
+                  ? "bg-blue-600 text-white shadow-md"
+                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              }`}
+            >
+              Flat Format
+            </button>
+          </div>
+        </div>
 
-                  if (isEmpty) {
+        {/* Globe View */}
+        {view === "globe" && (
+          <div className="max-w-6xl mx-auto">
+            <SkillsGlobe skills={allSkills} />
+          </div>
+        )}
+
+        {/* Keyboard View */}
+        {view === "keyboard" && (
+          <div className="max-w-5xl mx-auto perspective-container relative">
+            <div className="keyboard-container">
+              {keyboardRows.map((row, rowIndex) => (
+                <div
+                  key={rowIndex}
+                  className="keyboard-row"
+                  style={{
+                    paddingLeft: `${rowIndex * 10}px`, // Stagger each row slightly
+                  }}
+                >
+                  {row.map((skill, index) => {
+                    const globalIndex = rowIndex * 10 + index;
+
                     return (
                       <div
-                        key={`empty-${globalIndex}`}
+                        key={skill.name}
                         className={`keycap-wrapper ${
                           hasAnimated ? "keycap-dropped" : "keycap-hidden"
                         }`}
@@ -164,39 +200,20 @@ export default function Skills() {
                             : "0s",
                         }}
                       >
-                        <div className="mx-red-switch">
-                          <div className="switch-housing"></div>
-                          <div className="switch-stem"></div>
-                        </div>
+                        <Keycap
+                          skill={skill.name}
+                          category={skill.category}
+                          Icon={skill.Icon}
+                          index={globalIndex}
+                        />
                       </div>
                     );
-                  }
-
-                  return (
-                    <div
-                      key={skill.name}
-                      className={`keycap-wrapper ${
-                        hasAnimated ? "keycap-dropped" : "keycap-hidden"
-                      }`}
-                      style={{
-                        animationDelay: hasAnimated
-                          ? `${globalIndex * 0.08}s`
-                          : "0s",
-                      }}
-                    >
-                      <Keycap
-                        skill={skill.name}
-                        category={skill.category}
-                        Icon={skill.Icon}
-                        index={globalIndex}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
+                  })}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );
