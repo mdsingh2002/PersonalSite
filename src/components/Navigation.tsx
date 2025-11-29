@@ -5,10 +5,11 @@ export default function Navigation() {
   const [activeSection, setActiveSection] = useState("about");
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
-  // Initialize theme from localStorage or system preference
+  // Initialize theme from the localStorage
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
-    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+      .matches
       ? "dark"
       : "light";
     const initialTheme = savedTheme || systemTheme;
@@ -93,7 +94,7 @@ export default function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo - Apple style minimal */}
+          {/* Logo */}
           <button
             onClick={() => scrollToSection("about")}
             className="text-xl font-semibold tracking-tight bg-gradient-to-r from-brand-600 to-brand-500 bg-clip-text text-transparent transition-all duration-300 ease-apple hover:scale-105"
@@ -115,7 +116,7 @@ export default function Navigation() {
                     }`}
                   >
                     {item.label}
-                    {/* Active indicator - Apple style pill */}
+                    {/* Active indicator - Highlighted when the section is being viewed*/}
                     {activeSection === item.id && (
                       <span className="absolute inset-0 bg-brand-100/80 dark:bg-brand-900/30 rounded-full -z-10 animate-scale-in" />
                     )}
@@ -124,7 +125,7 @@ export default function Navigation() {
               ))}
             </ul>
 
-            {/* Social Links - Glass effect on hover */}
+            {/* Social Links*/}
             <div className="flex items-center space-x-2 ml-6 pl-6 border-l border-gray-300/50 dark:border-gray-700/50">
               <a
                 href="https://github.com/mdsingh2002"
@@ -161,11 +162,13 @@ export default function Navigation() {
                 </svg>
               </a>
 
-              {/* Theme Toggle Slider */}
+              {/* Dark and Light Mode Toggle Slider */}
               <button
                 onClick={toggleTheme}
                 className="relative flex items-center gap-2 px-3 py-2 rounded-full glass hover:shadow-glass-hover transition-all duration-300 ease-apple group"
-                aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+                aria-label={`Switch to ${
+                  theme === "light" ? "dark" : "light"
+                } mode`}
               >
                 {/* Sun icon */}
                 <svg
@@ -199,9 +202,7 @@ export default function Navigation() {
                 {/* Moon icon */}
                 <svg
                   className={`w-4 h-4 transition-all duration-300 ease-apple ${
-                    theme === "dark"
-                      ? "text-blue-400"
-                      : "text-gray-400"
+                    theme === "dark" ? "text-blue-400" : "text-gray-400"
                   }`}
                   fill="none"
                   stroke="currentColor"
@@ -224,7 +225,9 @@ export default function Navigation() {
             <button
               onClick={toggleTheme}
               className="relative flex items-center gap-2 px-3 py-2 rounded-full glass hover:shadow-glass-hover transition-all duration-300 ease-apple"
-              aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+              aria-label={`Switch to ${
+                theme === "light" ? "dark" : "light"
+              } mode`}
             >
               {/* Sun icon */}
               <svg
@@ -258,9 +261,7 @@ export default function Navigation() {
               {/* Moon icon */}
               <svg
                 className={`w-4 h-4 transition-all duration-300 ease-apple ${
-                  theme === "dark"
-                    ? "text-blue-400"
-                    : "text-gray-400"
+                  theme === "dark" ? "text-blue-400" : "text-gray-400"
                 }`}
                 fill="none"
                 stroke="currentColor"
