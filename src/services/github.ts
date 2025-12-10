@@ -5,6 +5,7 @@ export interface Repository {
   name: string;
   description: string | null;
   html_url: string;
+  homepage: string | null;
   stargazers_count: number;
   forks_count: number;
   open_issues_count: number;
@@ -12,6 +13,9 @@ export interface Repository {
   topics: string[];
   updated_at: string;
   fork: boolean;
+  demo_url?: string;
+  docs_url?: string;
+  project_details_url?: string;
 }
 
 export interface UserProfile {
