@@ -1,49 +1,330 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Keycap Styling */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-white dark:bg-gradient-to-br dark:from-gray-900 dark:via-blue-950 dark:to-gray-900;
+    @apply text-gray-900 dark:text-gray-100;
+    @apply transition-colors duration-500;
+  }
+
+  * {
+    text-rendering: optimizeLegibility;
+  }
+}
+
 @layer components {
+  /* Light mode glass */
+  .glass-light {
+    @apply bg-white/70 backdrop-blur-xl border border-white/20;
+    @apply shadow-glass-light;
+  }
+
+  .glass-light-heavy {
+    @apply bg-white/90 backdrop-blur-2xl border border-white/30;
+    @apply shadow-glass-light;
+  }
+
+  /* Dark mode glass */
+  .glass-dark {
+    @apply bg-gray-900/70 backdrop-blur-xl border border-gray-700/30;
+    @apply shadow-glass-dark;
+  }
+
+  .glass-dark-heavy {
+    @apply bg-gray-900/90 backdrop-blur-2xl border border-gray-700/40;
+    @apply shadow-glass-dark;
+  }
+
+  .glass {
+    @apply bg-white/70 dark:bg-gray-900/70;
+    @apply backdrop-blur-xl;
+    @apply border border-white/20 dark:border-gray-700/30;
+    @apply shadow-glass-light dark:shadow-glass-dark;
+    @apply transition-all duration-300;
+  }
+
+  .glass-heavy {
+    @apply bg-white/90 dark:bg-gray-900/90;
+    @apply backdrop-blur-2xl;
+    @apply border border-white/30 dark:border-gray-700/40;
+    @apply shadow-glass-light dark:shadow-glass-dark;
+    @apply transition-all duration-300;
+  }
+
+  /* Hover states for glass elements */
+  .glass-hover:hover {
+    @apply bg-white/80 dark:bg-gray-900/80;
+    @apply shadow-glass-hover;
+    @apply border-white/30 dark:border-gray-700/50;
+  }
+
+  /* Apple-style button */
+  .btn-apple {
+    @apply px-6 py-3 rounded-full;
+    @apply bg-brand-500 hover:bg-brand-600;
+    @apply text-white font-medium;
+    @apply transition-all duration-300 ease-apple;
+    @apply shadow-soft-md hover:shadow-soft-lg;
+    @apply transform hover:scale-105 active:scale-95;
+  }
+
+  /* secondary button with glass like effect */
+  .btn-apple-glass {
+    @apply px-6 py-3 rounded-full;
+    @apply glass glass-hover;
+    @apply text-gray-900 dark:text-gray-100 font-medium;
+    @apply transition-all duration-300 ease-apple;
+    @apply transform hover:scale-105 active:scale-95;
+  }
+
+  /* Glass card */
+  .card-glass {
+    @apply glass rounded-3xl p-6;
+    @apply transition-all duration-300 ease-apple;
+  }
+
+  .card-glass-hover:hover {
+    @apply transform -translate-y-1;
+    @apply shadow-glass-hover;
+  }
+
+  /* Frosted navbar */
+  .navbar-glass {
+    @apply fixed top-0 left-0 right-0 z-50;
+    @apply glass-heavy;
+    @apply transition-all duration-300;
+  }
+
+  /* Section with glass overlay */
+  .section-glass {
+    @apply relative;
+  }
+
+  .section-glass::before {
+    content: "";
+    @apply absolute inset-0 -z-10;
+    @apply bg-gradient-to-br from-white/50 to-transparent;
+    @apply dark:from-gray-900/50;
+    @apply backdrop-blur-3xl;
+    @apply rounded-3xl;
+  }
+}
+
+/* 3D Styling  (removeaable?)*/
+@layer components {
+  .perspective-container {
+    perspective: 2000px;
+    perspective-origin: center center;
+  }
+
+  .keyboard-container {
+    @apply p-8 rounded-xl relative;
+    background: linear-gradient(145deg, #1c2130 0%, #151921 50%, #0d1117 100%);
+    transform-style: preserve-3d;
+    user-select: none;
+
+    /* Realistic aluminum/plastic case with depth */
+    box-shadow:
+      /* Top edge highlight */ inset 0 1px 0
+        rgba(255, 255, 255, 0.1),
+      inset 0 2px 4px rgba(255, 255, 255, 0.05),
+      /* Inner shadow depth */ inset 0 -3px 8px rgba(0, 0, 0, 0.8),
+      inset 3px 0 8px rgba(0, 0, 0, 0.4), inset -3px 0 8px rgba(0, 0, 0, 0.4),
+      /* Border definition */ 0 0 0 1px rgba(0, 0, 0, 0.9),
+      0 0 0 2px rgba(255, 255, 255, 0.03),
+      /* 3D case thickness layers (realistic stepped extrusion) */ 0 8px 0 -1px #0c1015,
+      0 10px 0 -1px #0a0e13, 0 12px 0 -1px #080c11, 0 14px 0 -1px #060a0f,
+      0 16px 0 -1px #05080d, 0 18px 0 -1px #04070c, 0 20px 0 -1px #03060b,
+      0 22px 0 -1px #02050a, 0 24px 0 -1px #020409, 0 26px 0 -1px #010308,
+      /* Soft base shadow for realism */ 0 28px 40px rgba(0, 0, 0, 0.9),
+      0 35px 60px rgba(0, 0, 0, 0.7), 0 45px 80px rgba(0, 0, 0, 0.5);
+
+    border: none;
+    border-radius: 16px;
+  }
+
+  /* Realistic case bevel and material highlights */
+  .keyboard-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background: radial-gradient(
+        circle at 30% 20%,
+        rgba(255, 255, 255, 0.08) 0%,
+        transparent 40%
+      ),
+      linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.06) 0%,
+        transparent 30%,
+        transparent 70%,
+        rgba(0, 0, 0, 0.4) 100%
+      );
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  /* Subtle texture for case realism */
+  .keyboard-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    );
+    pointer-events: none;
+    opacity: 0.3;
+  }
+
   .keyboard-row {
-    @apply flex flex-wrap gap-4 justify-center;
+    @apply flex gap-1 justify-center mb-1;
+    transform-style: preserve-3d;
   }
 
   .keycap {
-    @apply relative transform transition-all duration-200;
-    animation: rgb-glow 3s linear infinite;
+    @apply relative transform transition-all duration-100 cursor-pointer;
+    transform-style: preserve-3d;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
   }
 
   .keycap:hover {
-    @apply scale-110 -translate-y-1;
+    transform: translateZ(-3px);
+    filter: drop-shadow(0 0.5px 1px rgba(0, 0, 0, 0.15));
+  }
+
+  .keycap:active {
+    transform: translateZ(-5px);
+    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
   }
 
   .keycap-body {
-    @apply w-20 h-20 bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800
-           rounded-lg shadow-lg flex flex-col items-center justify-center gap-1
-           border-2 border-gray-700 dark:border-gray-600
-           relative overflow-hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 8px 15px rgba(0, 0, 0, 0.2),
-      inset 0 -2px 4px rgba(0, 0, 0, 0.5),
-      inset 0 2px 4px rgba(255, 255, 255, 0.1);
+    @apply w-[72px] h-[72px] rounded-md flex flex-col items-center justify-center gap-1 relative overflow-visible;
+    background: linear-gradient(
+      145deg,
+      #ffffff 0%,
+      #fafbfc 30%,
+      #f5f6f8 70%,
+      #ebeef2 100%
+    );
+
+    /* Realistic PBT/ABS plastic keycap with proper depth */
+    box-shadow:
+      /* Top surface shine */ inset 0 1px 0
+        rgba(255, 255, 255, 1),
+      inset 0 2px 3px rgba(255, 255, 255, 0.9),
+      /* Side walls definition */ inset 1px 0 1px rgba(255, 255, 255, 0.5),
+      inset -1px 0 1px rgba(200, 205, 210, 0.8),
+      /* Bottom shadow for depth */ inset 0 -1px 2px rgba(180, 185, 195, 0.6),
+      inset 0 -3px 6px rgba(160, 170, 180, 0.4),
+      /* Outer border */ 0 0 0 0.5px rgba(200, 205, 210, 0.5),
+      /* Keycap stem thickness (realistic 3D extrusion) */ 0 1px 0 0 #d8dce2,
+      0 2px 0 0 #c8cdd5, 0 3px 0 0 #b8bec8, 0 4px 0 0 #a8afbb, 0 5px 0 0 #98a0ae,
+      0 6px 0 0 #8891a1,
+      /* Stem to housing connection shadow */ 0 6px 2px rgba(0, 0, 0, 0.15),
+      0 7px 4px rgba(0, 0, 0, 0.12), 0 9px 8px rgba(0, 0, 0, 0.1),
+      0 12px 16px rgba(0, 0, 0, 0.08);
+
+    border: none;
+    border-radius: 6px;
+    transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Subtle shine/reflection on keycap surface */
+  .keycap-body::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 8px;
+    right: 8px;
+    height: 18px;
+    background: radial-gradient(
+      ellipse at center top,
+      rgba(255, 255, 255, 0.8) 0%,
+      rgba(255, 255, 255, 0.4) 40%,
+      transparent 70%
+    );
+    border-radius: 50% 50% 40% 40%;
+    pointer-events: none;
+    mix-blend-mode: overlay;
   }
 
   .keycap:hover .keycap-body {
-    @apply border-blue-400;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 12px 30px rgba(0, 0, 0, 0.3),
-      inset 0 -2px 4px rgba(0, 0, 0, 0.5),
-      inset 0 2px 4px rgba(255, 255, 255, 0.2), 0 0 20px currentColor;
+    background: linear-gradient(
+      145deg,
+      #f8f9fb 0%,
+      #f0f2f5 30%,
+      #e8ebef 70%,
+      #dfe3e9 100%
+    );
+
+    box-shadow:
+      /* Enhanced top shine on hover */ inset 0 1px 0
+        rgba(255, 255, 255, 1),
+      inset 0 2px 4px rgba(255, 255, 255, 0.95),
+      /* Blue accent glow */ inset 0 0 0 1px rgba(59, 130, 246, 0.3),
+      /* Side definition */ inset 1px 0 2px rgba(220, 230, 240, 0.8),
+      inset -1px 0 2px rgba(190, 200, 215, 0.9),
+      /* Bottom depth */ inset 0 -2px 4px rgba(160, 175, 190, 0.5),
+      inset 0 -4px 8px rgba(140, 160, 180, 0.3),
+      /* Outer border with blue tint */ 0 0 0 0.5px rgba(59, 130, 246, 0.4),
+      0 0 0 1px rgba(200, 215, 230, 0.6),
+      /* Compressed stem (pressed down) */ 0 1px 0 0 #c0c8d5, 0 2px 0 0 #a8b2c2,
+      0 3px 0 0 #8895a8, /* Pressed shadow */ 0 3px 2px rgba(0, 0, 0, 0.12),
+      0 4px 6px rgba(0, 0, 0, 0.1), 0 6px 12px rgba(0, 0, 0, 0.08),
+      /* Blue glow effect */ 0 0 20px rgba(59, 130, 246, 0.2),
+      0 0 30px rgba(59, 130, 246, 0.1);
+  }
+
+  .keycap:active .keycap-body {
+    background: linear-gradient(
+      145deg,
+      #e8eaee 0%,
+      #dfe2e7 30%,
+      #d5d9e0 70%,
+      #ccd1d9 100%
+    );
+
+    box-shadow:
+      /* Pressed down - darker top */ inset 0 1px 3px
+        rgba(140, 150, 165, 0.6),
+      inset 0 3px 6px rgba(120, 135, 155, 0.4),
+      /* Blue accent when pressed */ inset 0 0 0 1px rgba(59, 130, 246, 0.5),
+      /* Compressed shadows */ inset 1px 0 2px rgba(180, 190, 205, 0.7),
+      inset -1px 0 2px rgba(170, 180, 195, 0.8),
+      inset 0 -1px 2px rgba(150, 165, 180, 0.5),
+      /* Outer border */ 0 0 0 0.5px rgba(59, 130, 246, 0.5),
+      /* Fully compressed stem */ 0 0.5px 0 0 #a0a8b8, 0 1px 0 0 #8890a0,
+      /* Minimal shadow when pressed */ 0 1px 1px rgba(0, 0, 0, 0.1),
+      0 2px 4px rgba(0, 0, 0, 0.08),
+      /* Subtle glow */ 0 0 15px rgba(59, 130, 246, 0.25);
   }
 
   .keycap-icon {
-    @apply text-gray-300 dark:text-gray-200 transition-colors duration-200;
+    @apply text-gray-700 transition-colors duration-200;
   }
 
   .keycap:hover .keycap-icon {
-    @apply text-white;
+    @apply text-blue-600;
   }
 
   .keycap-label {
-    @apply text-[9px] font-bold text-gray-400 dark:text-gray-300 text-center leading-tight;
+    @apply text-[9px] font-bold text-gray-600 text-center leading-tight;
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -52,7 +333,177 @@
   }
 
   .keycap:hover .keycap-label {
-    @apply text-gray-200 dark:text-white;
+    @apply text-blue-700;
+  }
+
+  /* Cherry MX Red Switch */
+  .mx-red-switch {
+    @apply w-[72px] h-[72px] flex items-center justify-center relative;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  }
+
+  .switch-housing {
+    @apply w-[58px] h-[58px] rounded-sm relative;
+    background: linear-gradient(
+      145deg,
+      #404040 0%,
+      #2f2f2f 30%,
+      #252525 70%,
+      #1a1a1a 100%
+    );
+
+    /* Realistic switch housing with proper plastic material */
+    box-shadow:
+      /* Top surface highlights */ inset 0 1px 0
+        rgba(255, 255, 255, 0.15),
+      inset 0 2px 4px rgba(255, 255, 255, 0.1),
+      /* Side definition */ inset 2px 0 3px rgba(255, 255, 255, 0.08),
+      inset -2px 0 3px rgba(0, 0, 0, 0.6),
+      /* Bottom depth */ inset 0 -2px 4px rgba(0, 0, 0, 0.8),
+      inset 0 -4px 8px rgba(0, 0, 0, 0.6),
+      /* Outer border definition */ 0 0 0 0.5px rgba(0, 0, 0, 0.9),
+      0 0 0 1px rgba(255, 255, 255, 0.05),
+      /* Switch mounting depth */ 0 2px 4px rgba(0, 0, 0, 0.5),
+      0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 12px rgba(0, 0, 0, 0.2);
+
+    border-radius: 3px;
+  }
+
+  /* LED diffuser slot at top */
+  .switch-housing::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 14px;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(20, 20, 20, 0.8) 50%,
+      rgba(30, 30, 30, 0.7) 100%
+    );
+    border-radius: 2px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.9),
+      inset 0 0 0 0.5px rgba(255, 255, 255, 0.05),
+      0 1px 1px rgba(255, 255, 255, 0.03);
+  }
+
+  /* Metal contact pins protruding from bottom */
+  .switch-housing::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 34px;
+    height: 8px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 8%,
+      #505050 12%,
+      #6a6a6a 15%,
+      #7a7a7a 18%,
+      #6a6a6a 21%,
+      transparent 24%,
+      transparent 38%,
+      #505050 42%,
+      #6a6a6a 45%,
+      #7a7a7a 48%,
+      #6a6a6a 51%,
+      transparent 54%,
+      transparent 76%,
+      #505050 80%,
+      #6a6a6a 83%,
+      #7a7a7a 86%,
+      #6a6a6a 89%,
+      transparent 92%,
+      transparent 100%
+    );
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5),
+      inset 0 0.5px 1px rgba(255, 255, 255, 0.3);
+    border-radius: 1px;
+  }
+
+  .switch-stem {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+      circle at 30% 30%,
+      #ff5555 0%,
+      #ef4444 20%,
+      #dc2626 50%,
+      #b91c1c 80%,
+      #991b1b 100%
+    );
+
+    /* Realistic glossy red plastic stem */
+    box-shadow:
+      /* Bright highlight edge */ inset 0 1px 0
+        rgba(255, 150, 150, 0.7),
+      inset 1px 1px 2px rgba(255, 120, 120, 0.6),
+      /* Top surface shine */ inset 0 2px 4px rgba(255, 100, 100, 0.4),
+      /* Side highlights */ inset 2px 0 3px rgba(255, 80, 80, 0.3),
+      inset -1px 0 2px rgba(139, 0, 0, 0.5),
+      /* Bottom shadow for depth */ inset 0 -2px 4px rgba(120, 0, 0, 0.7),
+      inset 0 -4px 6px rgba(80, 0, 0, 0.5),
+      /* Outer definition */ 0 0 0 0.5px rgba(139, 0, 0, 0.8),
+      /* Cast shadow */ 0 2px 3px rgba(0, 0, 0, 0.6),
+      0 4px 6px rgba(0, 0, 0, 0.4), 0 6px 10px rgba(0, 0, 0, 0.2);
+
+    border-radius: 2px;
+  }
+
+  .switch-stem::before,
+  .switch-stem::after {
+    content: "";
+    position: absolute;
+    background: linear-gradient(145deg, #8b0000 0%, #6b0000 50%, #4b0000 100%);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.7),
+      inset 0 -1px 1px rgba(139, 0, 0, 0.5), 0 0 0 0.5px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Vertical bar of cross - Cherry MX style */
+  .switch-stem::before {
+    width: 4px;
+    height: 22px;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    border-radius: 1px;
+  }
+
+  /* Horizontal bar of cross - Cherry MX style */
+  .switch-stem::after {
+    width: 22px;
+    height: 4px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    border-radius: 1px;
+  }
+}
+
+/* Keyboard Idle Float Animation */
+@keyframes keyboard-idle-float {
+  0%,
+  100% {
+    transform: rotateX(20deg) rotateY(-5deg) rotateZ(0deg);
+  }
+  25% {
+    transform: rotateX(22deg) rotateY(0deg) rotateZ(1deg);
+  }
+  50% {
+    transform: rotateX(20deg) rotateY(5deg) rotateZ(0deg);
+  }
+  75% {
+    transform: rotateX(18deg) rotateY(0deg) rotateZ(-1deg);
   }
 }
 
@@ -78,5 +529,63 @@
   }
   100% {
     filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.7));
+  }
+}
+
+/* Drop From Top Animation */
+@layer components {
+  .keycap-wrapper {
+    display: inline-block;
+  }
+
+  .keycap-hidden {
+    opacity: 0;
+    transform: translateY(-500px);
+  }
+
+  .keycap-dropped {
+    animation: drop-from-top 0.8s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
+    opacity: 0;
+  }
+
+  @keyframes drop-from-top {
+    0% {
+      opacity: 0;
+      transform: translateY(-500px) rotate(0deg);
+    }
+    60% {
+      opacity: 1;
+    }
+    80% {
+      transform: translateY(10px) rotate(var(--final-rotation, 0deg));
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) rotate(var(--final-rotation, 0deg));
+    }
+  }
+}
+
+/* Experience Technology Keycaps */
+@layer components {
+  .tech-keycap {
+    @apply relative flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-150;
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+    box-shadow: 0 4px 0 #5b21b6, 0 6px 8px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+    transform: translateY(0);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+  }
+
+  .tech-keycap:hover {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #5b21b6, 0 2px 4px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .tech-keycap:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 #5b21b6, 0 1px 2px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
   }
 }
