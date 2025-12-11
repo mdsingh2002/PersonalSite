@@ -64,6 +64,131 @@ const projectData: Record<string, ProjectData> = {
       "Collaborative development using Git and Agile methodologies",
     ],
   },
+  cardvault: {
+    title: "CardVault",
+    subtitle: "Secure Digital Card Storage Solution",
+    description:
+      "CardVault is a secure digital wallet application designed to store and manage various types of cards including credit cards, membership cards, and ID cards. The application prioritizes security with encryption and biometric authentication while providing a seamless user experience for quick access to stored cards.",
+    technologies: ["React", "TypeScript", "Node.js", "MongoDB", "Encryption"],
+    features: [
+      "Secure card storage with end-to-end encryption",
+      "Biometric authentication support",
+      "Quick card retrieval and management",
+      "Support for multiple card types",
+      "Card categorization and organization",
+    ],
+    images: [
+      "https://via.placeholder.com/800x600/3B82F6/FFFFFF?text=CardVault+Dashboard",
+      "https://via.placeholder.com/800x600/8B5CF6/FFFFFF?text=Card+Management",
+      "https://via.placeholder.com/800x600/10B981/FFFFFF?text=Security+Features",
+    ],
+    githubUrl: "https://github.com/mdsingh2002/CardVault",
+    challenges: [
+      "Implementing secure encryption for sensitive card data",
+      "Designing an intuitive UI for quick card access",
+      "Ensuring cross-platform compatibility",
+    ],
+    learnings: [
+      "Security best practices for handling sensitive user data",
+      "Implementing biometric authentication systems",
+      "Building responsive and accessible user interfaces",
+    ],
+  },
+  "algo-trading": {
+    title: "Algorithmic Trading Backtesting Platform",
+    subtitle: "Advanced Trading Strategy Simulation & Analysis",
+    description:
+      "A comprehensive platform for testing and analyzing trading strategies using historical market data. This tool allows traders to simulate their algorithms against real market conditions, providing detailed performance metrics and insights to optimize trading strategies before risking real capital.",
+    technologies: [
+      "Python",
+      "Pandas",
+      "NumPy",
+      "Matplotlib",
+      "Plotly",
+      "Flask",
+      "Interactive Brokers API",
+    ],
+    features: [
+      "Historical data backtesting engine",
+      "Multiple built-in trading strategies (e.g., Moving Average Crossover, Mean Reversion, Momentum)",
+      "Performance analytics and visualization",
+      "Risk management metrics",
+      "Modern web dashboard for monitoring trades",
+      "Live updates of positions and performance",
+    ],
+    images: [
+      "/projects/algo-trading/Panda2.png",
+      "/projects/algo-trading/Panda3.png",
+      "/projects/algo-trading/Panda5.png",
+    ],
+    githubUrl:
+      "https://github.com/mdsingh2002/Algorithmic-Trading-Backtesting-Platform",
+    demoUrl: "https://algorithmic-trading-backtesting-platform.onrender.com/",
+    challenges: [
+      "Processing large volumes of historical market data efficiently",
+      "Accurately simulating market conditions and slippage",
+      "Optimizing algorithm performance for fast backtesting",
+    ],
+    learnings: [
+      "Financial market mechanics and trading strategies",
+      "Data analysis and visualization techniques",
+      "Performance optimization for data-intensive applications",
+    ],
+  },
+  "stock-predictor": {
+    title: "Stock Price Predictor",
+    subtitle: "Machine Learning-Based Stock Market Analysis",
+    description:
+      "A machine learning application that analyzes historical stock market data to predict future price movements. Using advanced algorithms and technical indicators, this tool provides insights to help inform investment decisions through data-driven predictions and trend analysis.",
+    technologies: [
+      "Python",
+      "TensorFlow",
+      "Scikit-learn",
+      "Pandas",
+      "MatPlotLib",
+    ],
+    features: [
+      "Fetches real historical stock data from Yahoo Finance using pandas_datareader",
+      "Preprocesses stock prices using MinMaxScaler to normalize values for neural network training",
+      "Creates 60-day rolling windows of past closing prices to predict the next day’s price",
+      "Builds a multi-layer LSTM neural network with dropout regularization to predict stock price trends.",
+      "Evaluates performance by comparing predicted prices vs actual prices on unseen test data",
+      "Visualizes predictions using Matplotlib with clear actual vs predicted line graphs",
+    ],
+    images: [],
+    githubUrl: "https://github.com/mdsingh2002/Stock-Price-Predictor",
+    challenges: [
+      "Training accurate models with volatile market data",
+      "LSTM networks require large amounts of data to generalize well.",
+      "Risk of overfitting when training only on one company",
+    ],
+    learnings: [
+      "Learned how to preprocess and scale time-series data for machine learning",
+      "Gained experience building and training LSTM neural networks with TensorFlow",
+      "Improved skills in fetching and manipulating real-world financial data using Pandas",
+      "Learned how to visualize predictions and evaluate model performance",
+    ],
+  },
+  cookbook: {
+    title: "Cookbook",
+    subtitle: "Digital Recipe Management Platform",
+    description:
+      "A modern recipe management application that helps users organize and save their favorite recipes.",
+    technologies: ["HTML", "CSS", "Javascript"],
+    features: [
+      "Allow users create, view, edit, and delete their “favorite recipes",
+      "Saves the recipes onto the user's local machine",
+    ],
+    images: [],
+    githubUrl: "https://github.com/mdsingh2002/Cookbook",
+    challenges: [
+      "Designing an intuitive recipe input interface",
+      "Saving the recipes locally",
+    ],
+    learnings: [
+      "This was my first time using JavaScript, HTML, and CSS, and this project taught me how these technologies work together to build an interactive web application.",
+    ],
+  },
 };
 
 export default function ProjectDetails({ projectId }: ProjectDetailsProps) {
@@ -133,7 +258,7 @@ export default function ProjectDetails({ projectId }: ProjectDetailsProps) {
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 text-white rounded-lg font-medium transition-all duration-300 shadow-soft-sm hover:shadow-soft-md"
+                className="flex items-center gap-2 px-4 py-2 glass-heavy rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-all duration-300 hover:shadow-glass-hover"
               >
                 <svg
                   className="w-5 h-5"
@@ -169,13 +294,13 @@ export default function ProjectDetails({ projectId }: ProjectDetailsProps) {
               </div>
             </div>
           ) : null}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {project.images.map((image, index) => (
               <div key={index} className="card-glass overflow-hidden">
                 <img
                   src={image}
                   alt={`${project.title} screenshot ${index + 1}`}
-                  className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                  className="w-full h-auto object-contain hover:scale-105 transition-transform duration-300"
                 />
               </div>
             ))}
