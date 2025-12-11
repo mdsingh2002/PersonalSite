@@ -7,6 +7,7 @@ import GitHubProjects from './components/GitHubProjects'
 import ElectronicsProjects from './components/ElectronicsProjects'
 import Contact from './components/Contact'
 import ProjectDetails from './components/ProjectDetails'
+import ElectronicsProjectDetails from './components/ElectronicsProjectDetails'
 
 function HomePage() {
   return (
@@ -24,6 +25,11 @@ function HomePage() {
 function ProjectDetailsPage() {
   const { projectId } = useParams<{ projectId: string }>()
   return <ProjectDetails projectId={projectId || ''} />
+}
+
+function ElectronicsDetailsPage() {
+  const { projectId } = useParams<{ projectId: string }>()
+  return <ElectronicsProjectDetails projectId={projectId || ''} />
 }
 
 function Footer() {
@@ -49,6 +55,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/projects/:projectId" element={<ProjectDetailsPage />} />
+          <Route path="/electronics/:projectId" element={<ElectronicsDetailsPage />} />
         </Routes>
         <Footer />
       </div>
