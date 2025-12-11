@@ -7,6 +7,22 @@ import {
 } from "../services/github";
 import { GITHUB_USERNAME } from "../config";
 
+// Featured Projects Configuration
+// Add your featured projects here with optional custom links
+const FEATURED_PROJECTS: {
+  owner: string;
+  repo: string;
+  demo_url?: string;
+  docs_url?: string;
+  project_details_url?: string;
+}[] = [
+  {
+    owner: "CMPUT301W24T21",
+    repo: "ScanNPlan",
+    project_details_url: "/projects/scannplan", // Link to ScanNPlan details page
+  },
+];
+
 export default function GitHubProjects() {
   const [repos, setRepos] = useState<Repository[]>([]);
   const [loading, setLoading] = useState(true);
@@ -19,19 +35,28 @@ export default function GitHubProjects() {
       try {
         setLoading(true);
         setError(null);
-        const reposData = await fetchUserRepos(GITHUB_USERNAME);
 
-        // Fetch a specific repo that I have worked on previously for CMPUT 301
-        try {
-          const contributedRepo = await fetchSpecificRepo(
-            "CMPUT301W24T21",
-            "ScanNPlan"
-          );
-          setRepos([contributedRepo, ...reposData]);
-        } catch (err) {
-          console.error("Error fetching contributed repo:", err);
-          setRepos(reposData);
+        // Fetch all featured projects
+        const featuredRepos: Repository[] = [];
+
+        for (const project of FEATURED_PROJECTS) {
+          try {
+            const repo = await fetchSpecificRepo(project.owner, project.repo);
+            // Add custom links if provided
+            if (project.demo_url) repo.demo_url = project.demo_url;
+            if (project.docs_url) repo.docs_url = project.docs_url;
+            if (project.project_details_url)
+              repo.project_details_url = project.project_details_url;
+            featuredRepos.push(repo);
+          } catch (err) {
+            console.error(
+              `Error fetching ${project.owner}/${project.repo}:`,
+              err
+            );
+          }
         }
+
+        setRepos(featuredRepos);
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred");
       } finally {
@@ -67,10 +92,10 @@ export default function GitHubProjects() {
         {/* Section Header*/}
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">
-            GitHub Projects
+            Featured Projects
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 font-light">
-            Open source projects and code repositories
+            Showcase of selected projects and repositories
           </p>
         </div>
 
