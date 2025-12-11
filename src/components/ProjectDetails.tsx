@@ -8,7 +8,11 @@ interface ProjectData {
   title: string;
   subtitle: string;
   description: string;
-  technologies: string[];
+  technologies?: string[];
+  frontend?: string[];
+  backend?: string[];
+  database?: string[];
+  externalApis?: string[];
   features: string[];
   images: string[];
   videoUrl?: string;
@@ -28,11 +32,16 @@ const projectData: Record<string, ProjectData> = {
     technologies: [
       "Java",
       "Android SDK",
+      "AndroidX",
       "Firebase",
-      "Google Maps API",
-      "Material Design",
+      "Firebase Authentication",
+      "ZXing (Barcode/QR scanning)",
+      "RecyclerView",
+      "ConstraintLayout",
+      "Material Design Components",
       "JUnit",
-      "Espresso",
+      "Android ViewBinding",
+      "Android CameraX",
     ],
     features: [
       "QR Code generation and scanning for event check-ins",
@@ -44,12 +53,8 @@ const projectData: Record<string, ProjectData> = {
       "Photo upload and gallery for events",
       "Waitlist and attendee management system",
     ],
-    images: [
-      "https://via.placeholder.com/800x600/3B82F6/FFFFFF?text=ScanNPlan+Dashboard",
-      "https://via.placeholder.com/800x600/8B5CF6/FFFFFF?text=QR+Scanner",
-      "https://via.placeholder.com/800x600/10B981/FFFFFF?text=Event+Details",
-    ],
-    videoUrl: "https://www.youtube.com/embed/your-video-id", // Optional: Add YouTube video
+    images: [],
+    videoUrl: "",
     githubUrl: "https://github.com/CMPUT301W24T21/ScanNPlan",
     challenges: [
       "Implementing real-time sync across multiple devices using Firebase",
@@ -66,16 +71,45 @@ const projectData: Record<string, ProjectData> = {
   },
   cardvault: {
     title: "CardVault",
-    subtitle: "Secure Digital Card Storage Solution",
+    subtitle: "Card Portfolio Manager and Tracker",
     description:
-      "CardVault is a secure digital wallet application designed to store and manage various types of cards including credit cards, membership cards, and ID cards. The application prioritizes security with encryption and biometric authentication while providing a seamless user experience for quick access to stored cards.",
-    technologies: ["React", "TypeScript", "Node.js", "MongoDB", "Encryption"],
+      "CardVault is a full-stack Pokemon card portfolio tracker that helps collectors manage, analyze, and grow their card collections. The platform allows users to catalog every card they own, track graded and ungraded value, record purchase details, and view profit/loss over time. Real-time market prices are integrated directly from the Pokémon TCG API, enabling accurate portfolio valuation and historical trend analysis. Users can browse their collection through advanced filtering by set, type, rarity, grade, and price range. The application also includes a wishlist with automated target-price monitoring, detailed card profiles with imagery and stats, an achievement system, and interactive charts for tracking collection growth. Built with a modern React + TypeScript frontend and a Spring Boot backend backed by PostgreSQL, CardVault delivers a fast, responsive experience with secure authentication and clean UI components powered by Tailwind and shadcn/ui.",
+    frontend: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "React Router",
+      "Axios",
+      "Recharts",
+      "Sonner",
+      "shadcn/ui",
+      "Tailwind CSS",
+    ],
+    backend: [
+      "Java",
+      "Spring Boot",
+      "Spring Security",
+      "Spring Data JPA",
+      "Hibernate",
+      "JWT",
+      "Lombok",
+      "Maven",
+    ],
+    database: ["PostgreSQL"],
+    externalApis: ["Pokemon TCG API"],
     features: [
-      "Secure card storage with end-to-end encryption",
-      "Biometric authentication support",
-      "Quick card retrieval and management",
-      "Support for multiple card types",
-      "Card categorization and organization",
+      "Full collection management system",
+      "Add and track Pokemon cards (more cards coming soon!)",
+      "Purchase price logging",
+      "Acquisition date storage",
+      "Automatic market price fetching",
+      "Collection value history tracking",
+      "Interactive value charts",
+      "Profit and loss tracking",
+      "Advanced card search",
+      "Card details with images and stats",
+      "Modern responsive UI",
+      "Interactive analytics",
     ],
     images: [
       "https://via.placeholder.com/800x600/3B82F6/FFFFFF?text=CardVault+Dashboard",
@@ -84,14 +118,28 @@ const projectData: Record<string, ProjectData> = {
     ],
     githubUrl: "https://github.com/mdsingh2002/CardVault",
     challenges: [
-      "Implementing secure encryption for sensitive card data",
-      "Designing an intuitive UI for quick card access",
-      "Ensuring cross-platform compatibility",
+      "Synchronizing real-time price updates with database state",
+      "Handling rate limits from the Pokemon TCG API",
+      "Maintaining accurate value history snapshots",
+      "Designing a clean REST API for all card operations",
+      "Managing authentication and JWT securely",
+      "Structuring complex entity relationships in PostgreSQL",
+      "Optimizing Spring Boot queries for large collections",
+      "Ensuring UI remains fast while rendering many cards",
+      "State management across multiple React pages",
+      "Image loading performance for thousands of cards",
     ],
     learnings: [
-      "Security best practices for handling sensitive user data",
-      "Implementing biometric authentication systems",
-      "Building responsive and accessible user interfaces",
+      "How to build a full-stack application with React and Spring Boot",
+      "Designing a scalable REST API",
+      "Implementing JWT authentication",
+      "Using PostgreSQL with JPA and Hibernate",
+      "Creating responsive UI with Tailwind and shadcn/ui",
+      "Integrating third-party APIs for real-time data",
+      "Building analytics dashboards and charts",
+      "Managing complex relational data models",
+      "Optimizing React performance for large datasets",
+      "Implementing value tracking and history snapshots",
     ],
   },
   "algo-trading": {
@@ -318,21 +366,100 @@ export default function ProjectDetails({ projectId }: ProjectDetailsProps) {
         </div>
 
         {/* Technologies */}
-        <div className="card-glass p-8 mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-            Technologies Used
-          </h2>
-          <div className="flex flex-wrap gap-3">
-            {project.technologies.map((tech) => (
-              <span
-                key={tech}
-                className="px-4 py-2 glass-heavy text-gray-900 dark:text-white rounded-lg font-medium text-lg"
-              >
-                {tech}
-              </span>
-            ))}
+        {(project.technologies || project.frontend || project.backend) && (
+          <div className="card-glass p-8 mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+              Technologies Used
+            </h2>
+
+            {project.frontend && project.backend ? (
+              <div className="space-y-6">
+                {/* Frontend */}
+                <div>
+                  <h3 className="text-xl font-semibold text-brand-600 dark:text-brand-400 mb-3">
+                    Frontend
+                  </h3>
+                  <div className="flex flex-wrap gap-3">
+                    {project.frontend.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-4 py-2 glass-heavy text-gray-900 dark:text-white rounded-lg font-medium text-lg"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Backend */}
+                <div>
+                  <h3 className="text-xl font-semibold text-brand-600 dark:text-brand-400 mb-3">
+                    Backend
+                  </h3>
+                  <div className="flex flex-wrap gap-3">
+                    {project.backend.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-4 py-2 glass-heavy text-gray-900 dark:text-white rounded-lg font-medium text-lg"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Database */}
+                {project.database && (
+                  <div>
+                    <h3 className="text-xl font-semibold text-brand-600 dark:text-brand-400 mb-3">
+                      Database
+                    </h3>
+                    <div className="flex flex-wrap gap-3">
+                      {project.database.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-4 py-2 glass-heavy text-gray-900 dark:text-white rounded-lg font-medium text-lg"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* External APIs */}
+                {project.externalApis && (
+                  <div>
+                    <h3 className="text-xl font-semibold text-brand-600 dark:text-brand-400 mb-3">
+                      External APIs
+                    </h3>
+                    <div className="flex flex-wrap gap-3">
+                      {project.externalApis.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-4 py-2 glass-heavy text-gray-900 dark:text-white rounded-lg font-medium text-lg"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="flex flex-wrap gap-3">
+                {project.technologies?.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-4 py-2 glass-heavy text-gray-900 dark:text-white rounded-lg font-medium text-lg"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
-        </div>
+        )}
 
         {/* Features */}
         <div className="card-glass p-8 mb-8">
