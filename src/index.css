@@ -25,30 +25,30 @@
 @layer components {
   /* Light mode glass */
   .glass-light {
-    @apply bg-white/70 backdrop-blur-xl border border-white/20;
+    @apply bg-white/70 backdrop-blur-xl border border-gray-300/80;
     @apply shadow-glass-light;
   }
 
   .glass-light-heavy {
-    @apply bg-white/90 backdrop-blur-2xl border border-white/30;
+    @apply bg-white/90 backdrop-blur-2xl border border-gray-400/90;
     @apply shadow-glass-light;
   }
 
   /* Dark mode glass */
   .glass-dark {
-    @apply bg-gray-900/70 backdrop-blur-xl border border-gray-700/30;
+    @apply bg-gray-900/70 backdrop-blur-xl border border-gray-500/70;
     @apply shadow-glass-dark;
   }
 
   .glass-dark-heavy {
-    @apply bg-gray-900/90 backdrop-blur-2xl border border-gray-700/40;
+    @apply bg-gray-900/90 backdrop-blur-2xl border border-gray-400/80;
     @apply shadow-glass-dark;
   }
 
   .glass {
     @apply bg-white/70 dark:bg-gray-900/70;
     @apply backdrop-blur-xl;
-    @apply border border-white/20 dark:border-gray-700/30;
+    @apply border border-gray-300/80 dark:border-gray-500/70;
     @apply shadow-glass-light dark:shadow-glass-dark;
     @apply transition-all duration-300;
   }
@@ -56,7 +56,7 @@
   .glass-heavy {
     @apply bg-white/90 dark:bg-gray-900/90;
     @apply backdrop-blur-2xl;
-    @apply border border-white/30 dark:border-gray-700/40;
+    @apply border border-gray-400/90 dark:border-gray-400/80;
     @apply shadow-glass-light dark:shadow-glass-dark;
     @apply transition-all duration-300;
   }
@@ -65,7 +65,7 @@
   .glass-hover:hover {
     @apply bg-white/80 dark:bg-gray-900/80;
     @apply shadow-glass-hover;
-    @apply border-white/30 dark:border-gray-700/50;
+    @apply border-gray-400 dark:border-gray-400/90;
   }
 
   /* Apple-style button */
