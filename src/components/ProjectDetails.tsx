@@ -8,7 +8,11 @@ interface ProjectData {
   title: string;
   subtitle: string;
   description: string;
-  technologies: string[];
+  technologies?: string[];
+  frontend?: string[];
+  backend?: string[];
+  database?: string[];
+  externalApis?: string[];
   features: string[];
   images: string[];
   videoUrl?: string;
@@ -28,11 +32,16 @@ const projectData: Record<string, ProjectData> = {
     technologies: [
       "Java",
       "Android SDK",
+      "AndroidX",
       "Firebase",
-      "Google Maps API",
-      "Material Design",
+      "Firebase Authentication",
+      "ZXing (Barcode/QR scanning)",
+      "RecyclerView",
+      "ConstraintLayout",
+      "Material Design Components",
       "JUnit",
-      "Espresso",
+      "Android ViewBinding",
+      "Android CameraX",
     ],
     features: [
       "QR Code generation and scanning for event check-ins",
@@ -44,12 +53,8 @@ const projectData: Record<string, ProjectData> = {
       "Photo upload and gallery for events",
       "Waitlist and attendee management system",
     ],
-    images: [
-      "https://via.placeholder.com/800x600/3B82F6/FFFFFF?text=ScanNPlan+Dashboard",
-      "https://via.placeholder.com/800x600/8B5CF6/FFFFFF?text=QR+Scanner",
-      "https://via.placeholder.com/800x600/10B981/FFFFFF?text=Event+Details",
-    ],
-    videoUrl: "https://www.youtube.com/embed/your-video-id", // Optional: Add YouTube video
+    images: [],
+    videoUrl: "",
     githubUrl: "https://github.com/CMPUT301W24T21/ScanNPlan",
     challenges: [
       "Implementing real-time sync across multiple devices using Firebase",
@@ -62,6 +67,174 @@ const projectData: Record<string, ProjectData> = {
       "Firebase real-time database architecture and security rules",
       "Test-driven development with JUnit and Espresso",
       "Collaborative development using Git and Agile methodologies",
+    ],
+  },
+  cardvault: {
+    title: "CardVault",
+    subtitle: "Card Portfolio Manager and Tracker",
+    description:
+      "CardVault is a full-stack Pokemon card portfolio tracker that helps collectors manage, analyze, and grow their card collections. The platform allows users to catalog every card they own, track graded and ungraded value, record purchase details, and view profit/loss over time. Real-time market prices are integrated directly from the Pokémon TCG API, enabling accurate portfolio valuation and historical trend analysis. Users can browse their collection through advanced filtering by set, type, rarity, grade, and price range. The application also includes a wishlist with automated target-price monitoring, detailed card profiles with imagery and stats, an achievement system, and interactive charts for tracking collection growth. Built with a modern React + TypeScript frontend and a Spring Boot backend backed by PostgreSQL, CardVault delivers a fast, responsive experience with secure authentication and clean UI components powered by Tailwind and shadcn/ui.",
+    frontend: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "React Router",
+      "Axios",
+      "Recharts",
+      "Sonner",
+      "shadcn/ui",
+      "Tailwind CSS",
+    ],
+    backend: [
+      "Java",
+      "Spring Boot",
+      "Spring Security",
+      "Spring Data JPA",
+      "Hibernate",
+      "JWT",
+      "Lombok",
+      "Maven",
+    ],
+    database: ["PostgreSQL"],
+    externalApis: ["Pokemon TCG API"],
+    features: [
+      "Full collection management system",
+      "Add and track Pokemon cards (more cards coming soon!)",
+      "Purchase price logging",
+      "Acquisition date storage",
+      "Automatic market price fetching",
+      "Collection value history tracking",
+      "Interactive value charts",
+      "Profit and loss tracking",
+      "Advanced card search",
+      "Card details with images and stats",
+      "Modern responsive UI",
+      "Interactive analytics",
+    ],
+    images: [
+      "https://via.placeholder.com/800x600/3B82F6/FFFFFF?text=CardVault+Dashboard",
+      "https://via.placeholder.com/800x600/8B5CF6/FFFFFF?text=Card+Management",
+      "https://via.placeholder.com/800x600/10B981/FFFFFF?text=Security+Features",
+    ],
+    githubUrl: "https://github.com/mdsingh2002/CardVault",
+    challenges: [
+      "Synchronizing real-time price updates with database state",
+      "Handling rate limits from the Pokemon TCG API",
+      "Maintaining accurate value history snapshots",
+      "Designing a clean REST API for all card operations",
+      "Managing authentication and JWT securely",
+      "Structuring complex entity relationships in PostgreSQL",
+      "Optimizing Spring Boot queries for large collections",
+      "Ensuring UI remains fast while rendering many cards",
+      "State management across multiple React pages",
+      "Image loading performance for thousands of cards",
+    ],
+    learnings: [
+      "How to build a full-stack application with React and Spring Boot",
+      "Designing a scalable REST API",
+      "Implementing JWT authentication",
+      "Using PostgreSQL with JPA and Hibernate",
+      "Creating responsive UI with Tailwind and shadcn/ui",
+      "Integrating third-party APIs for real-time data",
+      "Building analytics dashboards and charts",
+      "Managing complex relational data models",
+      "Optimizing React performance for large datasets",
+      "Implementing value tracking and history snapshots",
+    ],
+  },
+  "algo-trading": {
+    title: "Algorithmic Trading Backtesting Platform",
+    subtitle: "Advanced Trading Strategy Simulation & Analysis",
+    description:
+      "A comprehensive platform for testing and analyzing trading strategies using historical market data. This tool allows traders to simulate their algorithms against real market conditions, providing detailed performance metrics and insights to optimize trading strategies before risking real capital.",
+    technologies: [
+      "Python",
+      "Pandas",
+      "NumPy",
+      "Matplotlib",
+      "Plotly",
+      "Flask",
+      "Interactive Brokers API",
+    ],
+    features: [
+      "Historical data backtesting engine",
+      "Multiple built-in trading strategies (e.g., Moving Average Crossover, Mean Reversion, Momentum)",
+      "Performance analytics and visualization",
+      "Risk management metrics",
+      "Modern web dashboard for monitoring trades",
+      "Live updates of positions and performance",
+    ],
+    images: [
+      "/projects/algo-trading/Panda2.png",
+      "/projects/algo-trading/Panda3.png",
+      "/projects/algo-trading/Panda5.png",
+    ],
+    githubUrl:
+      "https://github.com/mdsingh2002/Algorithmic-Trading-Backtesting-Platform",
+    demoUrl: "https://algorithmic-trading-backtesting-platform.onrender.com/",
+    challenges: [
+      "Processing large volumes of historical market data efficiently",
+      "Accurately simulating market conditions and slippage",
+      "Optimizing algorithm performance for fast backtesting",
+    ],
+    learnings: [
+      "Financial market mechanics and trading strategies",
+      "Data analysis and visualization techniques",
+      "Performance optimization for data-intensive applications",
+    ],
+  },
+  "stock-predictor": {
+    title: "Stock Price Predictor",
+    subtitle: "Machine Learning-Based Stock Market Analysis",
+    description:
+      "A machine learning application that analyzes historical stock market data to predict future price movements. Using advanced algorithms and technical indicators, this tool provides insights to help inform investment decisions through data-driven predictions and trend analysis.",
+    technologies: [
+      "Python",
+      "TensorFlow",
+      "Scikit-learn",
+      "Pandas",
+      "MatPlotLib",
+    ],
+    features: [
+      "Fetches real historical stock data from Yahoo Finance using pandas_datareader",
+      "Preprocesses stock prices using MinMaxScaler to normalize values for neural network training",
+      "Creates 60-day rolling windows of past closing prices to predict the next day’s price",
+      "Builds a multi-layer LSTM neural network with dropout regularization to predict stock price trends.",
+      "Evaluates performance by comparing predicted prices vs actual prices on unseen test data",
+      "Visualizes predictions using Matplotlib with clear actual vs predicted line graphs",
+    ],
+    images: [],
+    githubUrl: "https://github.com/mdsingh2002/Stock-Price-Predictor",
+    challenges: [
+      "Training accurate models with volatile market data",
+      "LSTM networks require large amounts of data to generalize well.",
+      "Risk of overfitting when training only on one company",
+    ],
+    learnings: [
+      "Learned how to preprocess and scale time-series data for machine learning",
+      "Gained experience building and training LSTM neural networks with TensorFlow",
+      "Improved skills in fetching and manipulating real-world financial data using Pandas",
+      "Learned how to visualize predictions and evaluate model performance",
+    ],
+  },
+  cookbook: {
+    title: "Cookbook",
+    subtitle: "Digital Recipe Management Platform",
+    description:
+      "A modern recipe management application that helps users organize and save their favorite recipes.",
+    technologies: ["HTML", "CSS", "Javascript"],
+    features: [
+      "Allow users create, view, edit, and delete their “favorite recipes",
+      "Saves the recipes onto the user's local machine",
+    ],
+    images: [],
+    githubUrl: "https://github.com/mdsingh2002/Cookbook",
+    challenges: [
+      "Designing an intuitive recipe input interface",
+      "Saving the recipes locally",
+    ],
+    learnings: [
+      "This was my first time using JavaScript, HTML, and CSS, and this project taught me how these technologies work together to build an interactive web application.",
     ],
   },
 };
@@ -133,7 +306,7 @@ export default function ProjectDetails({ projectId }: ProjectDetailsProps) {
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 text-white rounded-lg font-medium transition-all duration-300 shadow-soft-sm hover:shadow-soft-md"
+                className="flex items-center gap-2 px-4 py-2 glass-heavy rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-all duration-300 hover:shadow-glass-hover"
               >
                 <svg
                   className="w-5 h-5"
@@ -169,13 +342,13 @@ export default function ProjectDetails({ projectId }: ProjectDetailsProps) {
               </div>
             </div>
           ) : null}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {project.images.map((image, index) => (
               <div key={index} className="card-glass overflow-hidden">
                 <img
                   src={image}
                   alt={`${project.title} screenshot ${index + 1}`}
-                  className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                  className="w-full h-auto object-contain hover:scale-105 transition-transform duration-300"
                 />
               </div>
             ))}
@@ -193,21 +366,100 @@ export default function ProjectDetails({ projectId }: ProjectDetailsProps) {
         </div>
 
         {/* Technologies */}
-        <div className="card-glass p-8 mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-            Technologies Used
-          </h2>
-          <div className="flex flex-wrap gap-3">
-            {project.technologies.map((tech) => (
-              <span
-                key={tech}
-                className="px-4 py-2 glass-heavy text-gray-900 dark:text-white rounded-lg font-medium text-lg"
-              >
-                {tech}
-              </span>
-            ))}
+        {(project.technologies || project.frontend || project.backend) && (
+          <div className="card-glass p-8 mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+              Technologies Used
+            </h2>
+
+            {project.frontend && project.backend ? (
+              <div className="space-y-6">
+                {/* Frontend */}
+                <div>
+                  <h3 className="text-xl font-semibold text-brand-600 dark:text-brand-400 mb-3">
+                    Frontend
+                  </h3>
+                  <div className="flex flex-wrap gap-3">
+                    {project.frontend.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-4 py-2 glass-heavy text-gray-900 dark:text-white rounded-lg font-medium text-lg"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Backend */}
+                <div>
+                  <h3 className="text-xl font-semibold text-brand-600 dark:text-brand-400 mb-3">
+                    Backend
+                  </h3>
+                  <div className="flex flex-wrap gap-3">
+                    {project.backend.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-4 py-2 glass-heavy text-gray-900 dark:text-white rounded-lg font-medium text-lg"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Database */}
+                {project.database && (
+                  <div>
+                    <h3 className="text-xl font-semibold text-brand-600 dark:text-brand-400 mb-3">
+                      Database
+                    </h3>
+                    <div className="flex flex-wrap gap-3">
+                      {project.database.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-4 py-2 glass-heavy text-gray-900 dark:text-white rounded-lg font-medium text-lg"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* External APIs */}
+                {project.externalApis && (
+                  <div>
+                    <h3 className="text-xl font-semibold text-brand-600 dark:text-brand-400 mb-3">
+                      External APIs
+                    </h3>
+                    <div className="flex flex-wrap gap-3">
+                      {project.externalApis.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-4 py-2 glass-heavy text-gray-900 dark:text-white rounded-lg font-medium text-lg"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="flex flex-wrap gap-3">
+                {project.technologies?.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-4 py-2 glass-heavy text-gray-900 dark:text-white rounded-lg font-medium text-lg"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
-        </div>
+        )}
 
         {/* Features */}
         <div className="card-glass p-8 mb-8">

@@ -19,7 +19,27 @@ const FEATURED_PROJECTS: {
   {
     owner: "CMPUT301W24T21",
     repo: "ScanNPlan",
-    project_details_url: "/projects/scannplan", // Link to ScanNPlan details page
+    project_details_url: "/projects/scannplan",
+  },
+  {
+    owner: GITHUB_USERNAME,
+    repo: "CardVault",
+    project_details_url: "/projects/cardvault",
+  },
+  {
+    owner: GITHUB_USERNAME,
+    repo: "Algorithmic-Trading-Backtesting-Platform",
+    project_details_url: "/projects/algo-trading",
+  },
+  {
+    owner: GITHUB_USERNAME,
+    repo: "Stock-Price-Predictor",
+    project_details_url: "/projects/stock-predictor",
+  },
+  {
+    owner: GITHUB_USERNAME,
+    repo: "Cookbook",
+    project_details_url: "/projects/cookbook",
   },
 ];
 
