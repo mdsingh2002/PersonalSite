@@ -10,125 +10,38 @@ interface ElectronicsProject {
   link: string;
 }
 
-// You can customize this data with your actual electronics projects
+// Featured Electronics Project
 const electronicsProjects: ElectronicsProject[] = [
   {
     id: 1,
-    title: "Arduino Weather Station",
+    title: "RFID Music Player",
     description:
-      "A complete weather monitoring system using Arduino, DHT22 sensor, and LCD display. Tracks temperature, humidity, and displays real-time data.",
+      "An IoT music system using Raspberry Pi and RFID technology that allows users to play Spotify playlists by scanning physical RFID cards. Each card is mapped to a specific playlist, creating a tangible, intuitive music experience with seamless API integration.",
     image:
-      "https://via.placeholder.com/400x250/3B82F6/FFFFFF?text=Weather+Station",
-    technologies: ["Arduino", "C++", "DHT22", "LCD Display"],
-    category: "IoT",
-    link: "#",
+      "https://via.placeholder.com/800x600/3B82F6/FFFFFF?text=RFID+Music+Player",
+    technologies: ["Raspberry Pi", "Python", "RFID RC522", "Spotify API", "GPIO"],
+    category: "IoT/Audio",
+    link: "/electronics/rfid-music-player",
   },
-  {
-    id: 2,
-    title: "Home Automation System",
-    description:
-      "Smart home control system with ESP32, relay modules, and mobile app integration. Control lights and appliances remotely.",
-    image:
-      "https://via.placeholder.com/400x250/8B5CF6/FFFFFF?text=Home+Automation",
-    technologies: ["ESP32", "MQTT", "Relay", "WiFi"],
-    category: "IoT",
-    link: "#",
-  },
-  {
-    id: 3,
-    title: "Line Following Robot",
-    description:
-      "Autonomous robot using IR sensors and motor drivers. Follows black lines on white surfaces with PID control.",
-    image: "https://via.placeholder.com/400x250/10B981/FFFFFF?text=Line+Robot",
-    technologies: ["Arduino", "IR Sensors", "L298N", "PID"],
-    category: "Robotics",
-    link: "#",
-  },
-  {
-    id: 4,
-    title: "Digital Oscilloscope",
-    description:
-      "DIY oscilloscope using Arduino and TFT display. Visualizes analog signals in real-time with adjustable time and voltage scales.",
-    image:
-      "https://via.placeholder.com/400x250/F59E0B/FFFFFF?text=Oscilloscope",
-    technologies: ["Arduino", "TFT Display", "ADC", "Signal Processing"],
-    category: "Instrumentation",
-    link: "#",
-  },
-  {
-    id: 5,
-    title: "Solar Tracker",
-    description:
-      "Automatic solar panel positioning system using LDR sensors and servo motors. Maximizes solar energy collection.",
-    image:
-      "https://via.placeholder.com/400x250/EF4444/FFFFFF?text=Solar+Tracker",
-    technologies: ["Arduino", "LDR", "Servo Motors", "Solar Panel"],
-    category: "Renewable Energy",
-    link: "#",
-  },
-  {
-    id: 6,
-    title: "Bluetooth Speaker",
-    description:
-      "Custom-built portable Bluetooth speaker with amplifier circuit, rechargeable battery, and wooden enclosure.",
-    image: "https://via.placeholder.com/400x250/EC4899/FFFFFF?text=BT+Speaker",
-    technologies: [
-      "Bluetooth Module",
-      "Amplifier IC",
-      "Li-ion Battery",
-      "Audio",
-    ],
-    category: "Audio",
-    link: "#",
-  },
-];
-
-const categories = [
-  "All",
-  ...new Set(electronicsProjects.map((p) => p.category)),
 ];
 
 export default function ElectronicsProjects() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-
-  const filteredProjects =
-    selectedCategory === "All"
-      ? electronicsProjects
-      : electronicsProjects.filter((p) => p.category === selectedCategory);
-
   return (
     <section id="electronics" className="min-h-screen py-24 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">
-            Electronics Projects
+            Featured Electronics Project
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 font-light">
-            Hardware projects, circuits & embedded systems
+            Hardware design & embedded systems
           </p>
         </div>
 
-        {/* Category Filter */}
-        <div className="flex justify-center flex-wrap gap-3 mb-12">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 ease-apple ${
-                selectedCategory === category
-                  ? "bg-brand-500 text-white shadow-soft-md"
-                  : "glass-heavy text-gray-700 dark:text-gray-300 hover:shadow-glass-hover"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project) => (
+        {/* Featured Project - Centered */}
+        <div className="max-w-3xl mx-auto">
+          {electronicsProjects.map((project) => (
             <div
               key={project.id}
               className="card-glass card-glass-hover overflow-hidden group"
@@ -191,19 +104,6 @@ export default function ElectronicsProjects() {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Edit Notice - Glass card */}
-        <div className="mt-16 max-w-4xl mx-auto">
-          <div className="card-glass p-6 border-2 border-brand-200 dark:border-brand-800/30">
-            <p className="text-sm text-gray-700 dark:text-gray-300">
-              <strong>Note:</strong> Customize your electronics projects in{" "}
-              <code className="glass-heavy px-2 py-1 rounded text-xs">
-                src/components/ElectronicsProjects.tsx
-              </code>{" "}
-              (add your own images, descriptions, and links)
-            </p>
-          </div>
         </div>
       </div>
     </section>
