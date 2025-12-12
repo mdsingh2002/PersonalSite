@@ -17,8 +17,7 @@ const electronicsProjects: ElectronicsProject[] = [
     title: "RFID Music Player",
     description:
       "An IoT music system using Raspberry Pi and RFID technology that allows users to play Spotify playlists by scanning physical RFID cards. Each card is mapped to a specific playlist, creating a tangible, intuitive music experience with seamless API integration.",
-    image:
-      "https://via.placeholder.com/800x600/3B82F6/FFFFFF?text=RFID+Music+Player",
+    image: "/Spotify-Logo.png",
     technologies: ["Raspberry Pi", "Python", "RFID RC522", "Spotify API", "GPIO"],
     category: "IoT/Audio",
     link: "/electronics/rfid-music-player",
