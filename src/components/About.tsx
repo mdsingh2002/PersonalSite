@@ -49,7 +49,7 @@ export default function About() {
                 </span>
               </h1>
               <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 font-light">
-                Full Stack Developer & Electronics Enthusiast
+                Computer Science Graduate from the University of Alberta
               </p>
             </div>
 
