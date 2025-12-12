@@ -142,7 +142,7 @@ export default function Navigation() {
             onClick={() => scrollToSection("about")}
             className="text-xl font-semibold tracking-tight bg-gradient-to-r from-brand-600 to-brand-500 bg-clip-text text-transparent transition-all duration-300 ease-apple hover:scale-105"
           >
-            SWEMark
+            Mark Singh
           </button>
 
           {/* Desktop Navigation */}
