@@ -35,7 +35,7 @@ export default function ProjectCard({ repo }: ProjectCardProps) {
   };
 
   return (
-    <div className="card-glass card-glass-hover p-6 group animate-fade-up">
+    <div className="card-glass card-glass-hover p-6 group animate-fade-up h-full flex flex-col">
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <h3 className="text-lg font-bold text-gray-900 dark:text-white flex-1 mr-2">
@@ -59,11 +59,13 @@ export default function ProjectCard({ repo }: ProjectCardProps) {
       </div>
 
       {/* Description */}
-      {(repo.custom_description || repo.description) && (
-        <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed">
-          {repo.custom_description || repo.description}
-        </p>
-      )}
+      <div className="flex-grow">
+        {(repo.custom_description || repo.description) && (
+          <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed">
+            {repo.custom_description || repo.description}
+          </p>
+        )}
+      </div>
 
       {/* Languages */}
       {repo.languages && repo.languages.length > 0 && (
