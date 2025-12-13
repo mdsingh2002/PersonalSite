@@ -3,15 +3,16 @@ import ProjectCard from "./ProjectCard";
 import {
   fetchUserRepos,
   fetchSpecificRepo,
+  fetchRepoLanguages,
   Repository,
 } from "../services/github";
 import { GITHUB_USERNAME } from "../config";
 
 // Featured Projects Configuration
-// Add your featured projects here with optional custom links
 const FEATURED_PROJECTS: {
   owner: string;
   repo: string;
+  custom_description?: string;
   demo_url?: string;
   docs_url?: string;
   project_details_url?: string;
@@ -19,26 +20,36 @@ const FEATURED_PROJECTS: {
   {
     owner: "CMPUT301W24T21",
     repo: "ScanNPlan",
+    custom_description:
+      "Android event planning app with QR code scanning, real-time notifications, and Google Maps integration for managing attendees and events.",
     project_details_url: "/projects/scannplan",
   },
   {
     owner: GITHUB_USERNAME,
     repo: "CardVault",
+    custom_description:
+      "A full-stack web application for managing and tracking your card collections. Monitor card values, build wishlists, and analyze your collection's worth over time.",
     project_details_url: "/projects/cardvault",
   },
   {
     owner: GITHUB_USERNAME,
     repo: "Algorithmic-Trading-Backtesting-Platform",
+    custom_description:
+      "Python-based backtesting platform for algorithmic trading strategies with performance metrics and visualization tools.",
     project_details_url: "/projects/algo-trading",
   },
   {
     owner: GITHUB_USERNAME,
     repo: "Stock-Price-Predictor",
+    custom_description:
+      "Machine learning model for stock price prediction using LSTM networks and technical indicators.",
     project_details_url: "/projects/stock-predictor",
   },
   {
     owner: GITHUB_USERNAME,
     repo: "Cookbook",
+    custom_description:
+      "Recipe management web application with search functionality and ingredient tracking.",
     project_details_url: "/projects/cookbook",
   },
 ];
@@ -62,11 +73,25 @@ export default function GitHubProjects() {
         for (const project of FEATURED_PROJECTS) {
           try {
             const repo = await fetchSpecificRepo(project.owner, project.repo);
+
+            // Fetch all languages used in the repo
+            const languages = await fetchRepoLanguages(
+              project.owner,
+              project.repo
+            );
+            repo.languages = languages;
+
+            // Add custom description if provided
+            if (project.custom_description) {
+              repo.custom_description = project.custom_description;
+            }
+
             // Add custom links if provided
             if (project.demo_url) repo.demo_url = project.demo_url;
             if (project.docs_url) repo.docs_url = project.docs_url;
             if (project.project_details_url)
               repo.project_details_url = project.project_details_url;
+
             featuredRepos.push(repo);
           } catch (err) {
             console.error(

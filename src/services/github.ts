@@ -10,12 +10,14 @@ export interface Repository {
   forks_count: number;
   open_issues_count: number;
   language: string | null;
+  languages?: string[];
   topics: string[];
   updated_at: string;
   fork: boolean;
   demo_url?: string;
   docs_url?: string;
   project_details_url?: string;
+  custom_description?: string;
 }
 
 export interface UserProfile {
@@ -78,5 +80,22 @@ export async function fetchSpecificRepo(owner: string, repo: string): Promise<Re
   } catch (error) {
     console.error('Error fetching specific repo:', error);
     throw error;
+  }
+}
+
+export async function fetchRepoLanguages(owner: string, repo: string): Promise<string[]> {
+  try {
+    const response = await fetch(`${GITHUB_API_URL}/repos/${owner}/${repo}/languages`);
+
+    if (!response.ok) {
+      throw new Error(`GitHub API error: ${response.status}`);
+    }
+
+    const languagesData = await response.json();
+    // Return languages sorted by bytes of code (descending)
+    return Object.keys(languagesData).sort((a, b) => languagesData[b] - languagesData[a]);
+  } catch (error) {
+    console.error('Error fetching repo languages:', error);
+    return [];
   }
 }
