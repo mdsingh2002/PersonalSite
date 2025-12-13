@@ -19,6 +19,13 @@ export default function ProjectCard({ repo }: ProjectCardProps) {
     "C#": "bg-purple-600",
     Swift: "bg-orange-500",
     Kotlin: "bg-purple-500",
+    HTML: "bg-orange-400",
+    CSS: "bg-blue-400",
+    Shell: "bg-green-600",
+    Dart: "bg-teal-500",
+    Groovy: "bg-cyan-600",
+    XML: "bg-orange-300",
+    Batchfile: "bg-green-500",
     default: "bg-gray-500",
   };
 
@@ -52,26 +59,33 @@ export default function ProjectCard({ repo }: ProjectCardProps) {
       </div>
 
       {/* Description */}
-      {repo.description && (
-        <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2 text-sm leading-relaxed">
-          {repo.description}
+      {(repo.custom_description || repo.description) && (
+        <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed">
+          {repo.custom_description || repo.description}
         </p>
       )}
 
-      {/* Stats and Language */}
+      {/* Languages */}
+      {repo.languages && repo.languages.length > 0 && (
+        <div className="flex flex-wrap gap-2 mb-4">
+          {repo.languages.map((lang) => (
+            <div
+              key={lang}
+              className="flex items-center gap-1.5 px-2.5 py-1 glass-heavy rounded-full"
+            >
+              <span
+                className={`w-2 h-2 rounded-full ${getLanguageColor(lang)}`}
+              ></span>
+              <span className="text-gray-700 dark:text-gray-300 font-medium text-xs">
+                {lang}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Stats */}
       <div className="flex flex-wrap items-center gap-3 text-sm mb-4">
-        {repo.language && (
-          <div className="flex items-center gap-1.5">
-            <span
-              className={`w-2.5 h-2.5 rounded-full ${getLanguageColor(
-                repo.language
-              )}`}
-            ></span>
-            <span className="text-gray-700 dark:text-gray-300 font-medium">
-              {repo.language}
-            </span>
-          </div>
-        )}
 
         {repo.forks_count > 0 && (
           <div className="flex items-center gap-1 text-gray-600 dark:text-gray-400">
@@ -219,9 +233,6 @@ export default function ProjectCard({ repo }: ProjectCardProps) {
             </a>
           )}
         </div>
-        <span className="text-xs text-gray-500 dark:text-gray-400">
-          Updated {new Date(repo.updated_at).toLocaleDateString()}
-        </span>
       </div>
     </div>
   );
