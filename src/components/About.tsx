@@ -60,28 +60,19 @@ export default function About() {
               </p>
             )}
 
-            {/* Stats - Glass cards */}
-            <div className="flex flex-wrap gap-4 pt-2">
-              {profile?.public_repos && (
-                <div className="glass rounded-2xl px-6 py-4 min-w-[140px] hover:shadow-glass-hover transition-all duration-300 ease-apple">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-brand-600 to-brand-500 bg-clip-text text-transparent">
-                    {profile.public_repos}
-                  </div>
-                  <div className="text-sm font-medium text-gray-600 dark:text-gray-400 mt-1">
-                    Public Repos
-                  </div>
-                </div>
-              )}
-              {profile?.followers && profile.followers > 0 && (
-                <div className="glass rounded-2xl px-6 py-4 min-w-[140px] hover:shadow-glass-hover transition-all duration-300 ease-apple">
-                  <div className="text-4xl font-bold bg-gradient-to-r from-brand-600 to-brand-500 bg-clip-text text-transparent">
-                    {profile.followers}
-                  </div>
-                  <div className="text-sm font-medium text-gray-600 dark:text-gray-400 mt-1">
-                    Followers
-                  </div>
-                </div>
-              )}
+            {/* About Me - Glass card */}
+            <div className="glass rounded-2xl px-8 py-6 max-w-2xl hover:shadow-glass-hover transition-all duration-300 ease-apple">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                About Me
+              </h3>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                "Hi, I’m a developer who loves turning ideas into real-world
+                solutions. I build projects that combine software, data, and
+                sometimes hardware to solve meaningful problems. I’m especially
+                passionate about bioinformatics, full-stack development, and
+                data-driven applications, exploring ways to make technology work
+                smarter for people."
+              </p>
             </div>
 
             {/* CTA Buttons */}
