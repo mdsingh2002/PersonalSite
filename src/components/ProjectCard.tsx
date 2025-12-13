@@ -188,7 +188,7 @@ export default function ProjectCard({ repo }: ProjectCardProps) {
             </svg>
             GitHub
           </a>
-          {(repo.homepage || repo.demo_url) && (
+          {(repo.homepage || repo.demo_url) && !repo.hide_demo && (
             <a
               href={repo.demo_url || repo.homepage || "#"}
               target="_blank"

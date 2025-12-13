@@ -18,6 +18,7 @@ export interface Repository {
   docs_url?: string;
   project_details_url?: string;
   custom_description?: string;
+  hide_demo?: boolean;
 }
 
 export interface UserProfile {

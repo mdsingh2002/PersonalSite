@@ -16,6 +16,7 @@ const FEATURED_PROJECTS: {
   demo_url?: string;
   docs_url?: string;
   project_details_url?: string;
+  hide_demo?: boolean;
 }[] = [
   {
     owner: "CMPUT301W24T21",
@@ -51,6 +52,13 @@ const FEATURED_PROJECTS: {
     custom_description:
       "Recipe management web application with search functionality and ingredient tracking.",
     project_details_url: "/projects/cookbook",
+  },
+  {
+    owner: GITHUB_USERNAME,
+    repo: "PersonalSite",
+    custom_description:
+      "Portfolio website that you are currently on built with React, TypeScript, and Tailwind CSS. Features dark mode, GitHub API integration, and interactive 3D visualizations.",
+    hide_demo: true,
   },
 ];
 
@@ -91,6 +99,7 @@ export default function GitHubProjects() {
             if (project.docs_url) repo.docs_url = project.docs_url;
             if (project.project_details_url)
               repo.project_details_url = project.project_details_url;
+            if (project.hide_demo) repo.hide_demo = project.hide_demo;
 
             featuredRepos.push(repo);
           } catch (err) {
