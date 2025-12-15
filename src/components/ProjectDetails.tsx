@@ -112,9 +112,10 @@ const projectData: Record<string, ProjectData> = {
       "Interactive analytics",
     ],
     images: [
-      "https://via.placeholder.com/800x600/3B82F6/FFFFFF?text=CardVault+Dashboard",
-      "https://via.placeholder.com/800x600/8B5CF6/FFFFFF?text=Card+Management",
-      "https://via.placeholder.com/800x600/10B981/FFFFFF?text=Security+Features",
+      "/projects/CardVault/Dashboard.png",
+      "/projects/CardVault/Browse.png",
+      "/projects/CardVault/Stats.png",
+      "/projects/CardVault/Wishlist.png",
     ],
     githubUrl: "https://github.com/mdsingh2002/CardVault",
     challenges: [
