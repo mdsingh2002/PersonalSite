@@ -60,6 +60,20 @@ const FEATURED_PROJECTS: {
       "Portfolio website that you are currently on built with React, TypeScript, and Tailwind CSS. Features dark mode, GitHub API integration, and interactive 3D visualizations.",
     hide_demo: true,
   },
+  {
+    owner: "mdsingh2002",
+    repo: "Pharmacy-Sales-Data",
+    custom_description:
+      "Data analytics project analyzing pharmacy sales trends, inventory management, and customer purchase patterns using Python and visualization tools.",
+    project_details_url: "/projects/pharmacy-sales",
+  },
+  {
+    owner: "mdsingh2002",
+    repo: "Emergency-Fire-Response-Edmonton-Analytics",
+    custom_description:
+      "Analytical study of emergency fire response data in Edmonton, examining response times, incident patterns, and resource allocation using data science techniques.",
+    project_details_url: "/projects/fire-response",
+  },
 ];
 
 export default function GitHubProjects() {
