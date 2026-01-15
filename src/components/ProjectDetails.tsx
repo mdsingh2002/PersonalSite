@@ -242,11 +242,12 @@ const projectData: Record<string, ProjectData> = {
     title: "Pharmacy Sales Analytics",
     subtitle: "Data-Driven Insights for Pharmaceutical Retail",
     description:
-      "A comprehensive data analytics project that examines pharmacy sales data to uncover trends in customer purchasing behavior, inventory management, and sales performance. The analysis provides actionable insights for optimizing stock levels, identifying high-demand products, and understanding seasonal patterns in pharmaceutical retail. Leveraging Google Cloud Platform for data storage and processing, this project demonstrates how cloud-based data analytics can drive business decisions in the healthcare retail sector.",
+      "A comprehensive data analytics project that examines pharmacy sales data to uncover trends in customer purchasing behavior, inventory management, and sales performance. The analysis provides actionable insights for optimizing stock levels, identifying high-demand products, and understanding seasonal patterns in pharmaceutical retail. Leveraging Google Cloud Platform for data storage and processing with Apache Airflow for orchestration, this project demonstrates how cloud-based data analytics can drive business decisions in the healthcare retail sector.",
     technologies: [
       "Python",
       "Pandas",
       "NumPy",
+      "Apache Airflow",
       "Google Cloud BigQuery",
       "Google Cloud Storage",
       "PyYAML",
